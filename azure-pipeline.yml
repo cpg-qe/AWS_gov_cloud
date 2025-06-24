@@ -17,19 +17,22 @@ stages:
     - checkout: self  # Ensures code from repo is available
 
 
+  
+    
     - task: CloudFormationCreateOrUpdateStack@1
       inputs:
         awsCredentials: 'awsgovcloud'
         regionName: 'us-gov-west-1'
-        stackName: 'test123'
-        templateSource: 'file'
-        templateFile: 'awscft.json'
+        stackName: 'test1234'
+        templateSource: 'url'
+        templateUrl: 'https://raw.githubusercontent.com/cpg-qe/awscft/refs/heads/main/awscft.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
-            ParameterValue: $(deploymentID)
-          - ParameterKey: InstanceType
-            ParameterValue: $(InstanceType)
+             ParameterValue: $(deploymentID)
+           - ParameterKey: InstanceType
+              ParameterValue: $(InstanceType)
 
     - script: echo "##vso[task.setvariable variable=stackName;isOutput=true]$(stackName)"
       displayName: 'Set Stack Name Output Variable'       
+      condition:           
