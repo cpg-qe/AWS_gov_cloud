@@ -10,22 +10,23 @@ stages:
   - job: DeployCloudFormation
     steps:
           
+    
     - task: CloudFormationCreateOrUpdateStack@1
       inputs:
-        awsCredentials: 'awsgovcloud'
-        regionName: 'us-gov-west-1'
-        stackName: 'test123'
-        templateSource: 's3'
-        s3BucketName: 'testawssnow'
-        s3ObjectKey: 'https://testawssnow.s3.us-gov-west-1.amazonaws.com/fullvpcscenario.json'
-        templateParametersSource: 'inline'
-        templateParameters: |
-          - ParameterKey: deploymentID
-            ParameterValue: $(deploymentID)
-          - ParameterKey: InstanceType
-            ParameterValue: $(InstanceType)
-    
-    
+          awsCredentials: 'awsgovcloud'
+          regionName: 'us-gov-west-1'
+          stackName: 'test123'
+          templateSource: 's3'
+          s3BucketName: 'testawssnow'
+          s3ObjectKey: 'https://testawssnow.s3.us-gov-west-1.amazonaws.com/fullvpcscenario.json'
+          templateParametersSource: 'inline'
+          templateParameters: |
+            - ParameterKey: deploymentID
+               ParameterValue: $(deploymentID)
+             - ParameterKey: InstanceType
+                ParameterValue: $(InstanceType)
+          capabilityIAM: false
+          capabilityNamedIAM: false
     
     # Set an output variable for stackName
     - script: echo "##vso[task.setvariable variable=stackName;isOutput=true]$(stackName)"
