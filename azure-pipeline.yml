@@ -19,7 +19,7 @@ stages:
     - task: CloudFormationCreateOrUpdateStack@1
       displayName: 'Create or Update CloudFormation Stack'
       inputs:
-        awsCredentials: 'awsgovcloud'  # Replace with actual service connection name
+        awsCredentials: $(service-connection)  # Replace with actual service connection name
         regionName: 'us-gov-west-1'
         stackName: $(stackName)
         templateSource: 'file'
