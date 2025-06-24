@@ -1,0 +1,35 @@
+trigger:
+- main  # Or your specific branch
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  stackName: 'MyCloudFormationStack'
+  deploymentID: '12345'
+  InstanceType: 't3.micro'
+
+stages:
+- stage: Deploy
+  jobs:
+  - job: DeployCloudFormation
+    steps:
+    - checkout: self  # Ensures code from repo is available
+
+    - task: CloudFormationCreateOrUpdateStack@1
+      displayName: 'Create or Update CloudFormation Stack'
+      inputs:
+        awsCredentials: 'awsgovcloud'  # Replace with actual service connection name
+        regionName: 'us-gov-west-1'
+        stackName: $(stackName)
+        templateSource: 'file'
+        templateFile: 'awscft.json'  # Adjust the path to your local template
+        templateParametersSource: 'inline'
+        templateParameters: |
+          - ParameterKey: deploymentID
+            ParameterValue: $(deploymentID)
+          - ParameterKey: InstanceType
+            ParameterValue: $(InstanceType)
+
+    - script: echo "##vso[task.setvariable variable=stackName;isOutput=true]$(stackName)"
+      displayName: 'Set Stack Name Output Variable'
