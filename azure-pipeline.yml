@@ -15,15 +15,15 @@ stages:
         awsCredentials: 'awsmastercred'
         regionName: 'us-west-1'
         stackName: 'test222'
-        templateSource: 'file'
-        templateFile: 'https://awstestnew05.s3.us-west-1.amazonaws.com/ADOTest/fullvpcscenario.json'
-        s3BucketName: 'awstestnew05'
+        templateSource: 'url'
+        templateUrl: 'https://awstestnew05.s3.us-west-1.amazonaws.com/ADOTest/fullvpcscenario.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
              ParameterValue: $(deploymentID)
           - ParameterKey: InstanceType
              ParameterValue: $(InstanceType)
+    
     
     
     
