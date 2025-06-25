@@ -14,15 +14,18 @@ stages:
       inputs:
         awsCredentials: 'awsmastercred'
         regionName: 'us-west-1'
-        stackName: 'test1222'
-        templateSource: 'usePrevious'
+        stackName: 'test222'
+        templateSource: 's3'
+        s3BucketName: 'awstestnew05'
+        s3ObjectKey: 'https://awstestnew05.s3.us-west-1.amazonaws.com/ADOTest/fullvpcscenario.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
              ParameterValue: $(deploymentID)
-           - ParameterKey: InstanceType
-              ParameterValue: $(InstanceType)
-
+          - ParameterKey: InstanceType
+             ParameterValue: $(InstanceType)
+    
+  
     
     # Set an output variable for stackName
     - script: echo "##vso[task.setvariable variable=stackName;isOutput=true]$(stackName)"
