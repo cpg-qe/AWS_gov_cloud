@@ -17,7 +17,7 @@ stages:
         regionName: 'us-gov-west-1'
         stackName: test1234  # Define the stackName parameter here
         templateSource: 'url'
-        templateUrl: 'https://testawssnow.s3.us-gov-west-1.amazonaws.com/fullvpcscenario.json'
+        templateUrl: 'https://testawssnow.s3.us-gov-west-1.amazonaws.com/awsgovcloud.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
