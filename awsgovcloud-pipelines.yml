@@ -1,0 +1,34 @@
+trigger:
+- main  # Replace 'main' with the appropriate branch trigger
+ 
+pool:
+  vmImage: 'ubuntu-latest'
+ 
+stages:
+- stage: Deploy
+  jobs:
+  - job: DeployCloudFormation
+    steps:
+
+    - task: CloudFormationCreateOrUpdateStack@1
+      inputs:
+        awsCredentials: 'awsgovcloud'
+        regionName: 'us-gov-west-1'
+        stackName: 'test3222'
+        templateSource: 'url'
+        templateUrl: 'https://testawssnow.s3.us-gov-west-1.amazonaws.com/fullvpcscenario.json'
+        templateParametersSource: 'inline'
+        templateParameters: |
+          - ParameterKey: deploymentID
+             ParameterValue: $(deploymentID)
+           - ParameterKey: InstanceType
+              ParameterValue: $(InstanceType)
+
+  
+    
+    
+    
+    
+    # Set an output variable for stackName
+    - script: echo "##vso[task.setvariable variable=stackName;isOutput=true]$(stackName)"
+      displayName: 'Set Stack Name Output Variable'
