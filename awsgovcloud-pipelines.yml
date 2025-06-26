@@ -14,19 +14,18 @@ stages:
       inputs:
         awsCredentials: 'awsgovcloud'
         regionName: 'us-gov-west-1'
-        stackName: 'test3222'
-        templateSource: 'url'
-        templateUrl: 'https://testawssnow.s3.us-gov-west-1.amazonaws.com/fullvpcscenario.json'
+        stackName: 'test222'
+        templateSource: 's3'
+        s3BucketName: 'testawssnow'
+        s3ObjectKey: 'fullvpcscenario.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
              ParameterValue: $(deploymentID)
            - ParameterKey: InstanceType
               ParameterValue: $(InstanceType)
-
+    
   
-    
-    
     
     
     # Set an output variable for stackName
