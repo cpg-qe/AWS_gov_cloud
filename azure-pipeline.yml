@@ -16,7 +16,7 @@ stages:
         regionName: 'us-west-1'
         stackName: 'test222'
         templateSource: 'url'
-        templateUrl: 'https://awsadotestbucket-dnd.s3.us-west-1.amazonaws.com/fullvpcscenario.json'
+        templateUrl: 'https://awsado-testbucket-dnd.s3.us-west-1.amazonaws.com/fullvpcscenario.json'
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
