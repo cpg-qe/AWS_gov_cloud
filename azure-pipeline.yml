@@ -20,9 +20,9 @@ stages:
         templateParametersSource: 'inline'
         templateParameters: |
           - ParameterKey: deploymentID
-             ParameterValue: $(deploymentID)
+            ParameterValue: $(deploymentID)
           - ParameterKey: InstanceType
-             ParameterValue: $(InstanceType)
+            ParameterValue: $(InstanceType)
     
     
     
